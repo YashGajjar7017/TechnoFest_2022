@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Include Bootstrap for styling -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+    </style>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+            background-repeat: no-repeat;
+            max-height: 100%;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+
+        .qr-code {
+            max-width: 300px;
+            margin: 10px;
+            border: 2px solid yellowgreen;
+        }
+
+        .btn {
+            bottom: 0;
+        }
+
+        .rep-pad {
+            display: block;
+            border: 1px solid black;
+            background-color: #444;
+            margin-left: 10%;
+            margin-right: 10%;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white;
+            padding: 10px;
+        }
+
+        /* color text */
+        #shadowBox {
+            background-color: white;
+            border: 1px solid white;
+            padding: 3px;
+        }
+
+        .rainbow {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 32px;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 5px;
+            animation: colorRotate 6s linear 0s infinite;
+        }
+
+        @keyframes colorRotate {
+            from {
+                color: #6666ff;
+            }
+
+            10% {
+                color: #0099ff;
+            }
+
+            50% {
+                color: #00ff00;
+            }
+
+            75% {
+                color: #ff3399;
+            }
+
+            100% {
+                color: #6666ff;
+            }
+        }
+    </style>
+    <title>Home | Welcome to technofest program 2022</title>
+</head>
+
+<body>
+    <div class="container-fluid" style="height: 700px;">
+        <center>
+            <h1 style="color: black;font-family: 'Roboto', sans-serif;"><u> </u>
+                    <div id="shadowBox">
+                        <h3 class="rainbow">Welcome to the technofest program 2022</h3>
+                    </div></h1>
+        </center>
+        <div class="text-center"><br>
+
+            <!-- Get a Placeholder image initially,	this will change according to the data entered later -->
+            <img src="https://chart.googleapis.com/chart?cht=qr&chl=Hello+World&chs=160x160&chld=L|0"
+                class="qr-code img-thumbnail img-responsive" />
+        </div>
+
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="content">
+                    Content:
+                </label>
+
+                <div class="col-sm-8">
+                    <!-- Input box to enter the	required data -->
+                    <input type="text" size="60" maxlength="60" class="form-control" id="content"
+                        placeholder="Enter content" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+
+                    <!-- Button to generate QR Code for	the entered data -->
+                    <button type="button" class="btn btn-default" id="generate"> Generate </button>
+                </div>
+            </div>
+            <div class="content">
+                <p class="rep-pad"> Our project represent the wifi modole Lorem ipsum dolor, sit amet consectetur
+                    adipisicing elit.
+                    Quasi, fugit. Corporis assumenda aliquid aspernatur dolores. Iusto officiis perferendis aperiam
+                    magni deleniti laboriosam accusamus quod laborum aspernatur praesentium. Nihil ex error illum quos
+                    neque, adipisci voluptas natus et eum deleniti odit omnis sequi soluta fuga. Sit placeat odio,
+                    laborum officia repellendus accusantium distinctio veritatis sapiente id earum possimus dolorum,
+                    fugiat sed vitae ab officiis? Quis sunt quae inventore quo dolorum qui modi ad necessitatibus,
+                    fugiat adipisci? In, nihil possimus at reiciendis doloremque provident tenetur nobis autem culpa
+                    voluptatum eum quia dicta magnam numquam mollitia officia, iste quibusdam veritatis quis, quae
+                    recusandae.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- hide area -->
+    <input type="button" value="x1" class="btn1">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script>
+        // Function to HTML encode the text
+        // This creates a new hidden element,
+        // inserts the given text into it
+        // and outputs it out as HTML
+        function htmlEncode(value) {
+            return $('<div/>').text(value)
+                .html();
+        }
+
+        $(function () {
+
+            // Specify an onclick function
+            // for the generate button
+            $('#generate').click(function () {
+
+                // Generate the link that would be
+                // used to generate the QR Code
+                // with the given data
+                let finalURL =
+                    'https://chart.googleapis.com/chart?cht=qr&chl=' +
+                    htmlEncode($('#content').val()) +
+                    '&chs=160x160&chld=L|0'
+
+                // Replace the src of the image with
+                // the QR code image
+                $('.qr-code').attr('src', finalURL);
+            });
+        });
+
+        $('.btn1').click(function () {
+            $('.form-group,.form-group').toggle();
+        });
+    </script>
+</body>
+
+</html>
